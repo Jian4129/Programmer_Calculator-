@@ -70,7 +70,7 @@ public class Programmer_Calculator extends JFrame implements MouseListener
 		function_1.Resize(width, height);
 		function_2.Resize(width, height);*/
 	}
-	public void addOperator(String operator, int currentBase) 
+	public String addOperator(String operator, int currentBase) 
 	{
 		String result = new String();
 		result = display.popDisplayedNumber();
@@ -85,6 +85,7 @@ public class Programmer_Calculator extends JFrame implements MouseListener
 			display.display.setText(result); //set the text to the result
 			convert.Convert(result);
 		}
+		return result;
 		
 	}
 	int temp = 0; //for shift button
@@ -147,7 +148,8 @@ public class Programmer_Calculator extends JFrame implements MouseListener
 		}
 		else if (e.getSource() == function_2.equal)
 		{
-			addOperator(function_2.equal.getText(), convert.currentBase);
+			String result = addOperator(function_2.equal.getText(), convert.currentBase);
+			display.setDisplayedNumber(result);
 			save.clear();
 		}
 		//3 type of clear

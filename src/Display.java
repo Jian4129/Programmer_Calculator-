@@ -54,7 +54,13 @@ public class Display extends JPanel
 	
 	public void setDisplayedNumber(String s)
 	{
-		displayedNumber = s;
+		if(s == "0")
+		{
+			displayedNumber = new String();
+		}
+		else{
+			displayedNumber = s;
+		}
 	}
 	
 	public void clear() //clean the display
