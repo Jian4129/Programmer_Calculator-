@@ -150,7 +150,7 @@ public class Programmer_Calculator extends JFrame implements MouseListener
 			addOperator(function_2.equal.getText(), convert.currentBase);
 			save.clear();
 		}
-		//2 type of clear
+		//3 type of clear
 		else if (e.getSource() == function_2.CE)
 		{
 			display.clear();
@@ -161,6 +161,25 @@ public class Programmer_Calculator extends JFrame implements MouseListener
 			display.clear();
 			save.clear();
 			convert.Convert("0");
+		}
+		else if (e.getSource() == function_2.backspace)
+		{
+			//remove the last char from the string
+			String stringTemp = display.getDisplayedNumber();
+			if(!stringTemp.isEmpty() && stringTemp.length() != 1)
+			{
+				stringTemp = stringTemp.substring(0, (stringTemp.length()-1));
+				display.setDisplayedNumber(stringTemp);
+				display.display.setText(stringTemp);
+				//update the 4 base
+				convert.Convert(stringTemp);
+			}
+			else
+			{
+				display.setDisplayedNumber(new String());
+				display.display.setText("0");
+				convert.Convert("0");
+			}
 		}
 		//4 different base
 		else if(e.getSource() == convert.hex)
@@ -204,7 +223,7 @@ public class Programmer_Calculator extends JFrame implements MouseListener
 		else if(e.getSource() == function_2.signSwitch)
 		{
 			//switch the sign
-			String result = function_2.signSwitchFunc(display.display.getText(), convert.currentBase);
+			String result = function_2.signSwitchFunc(display.getDisplayedNumber(), convert.currentBase);
 			//update the display
 			display.setDisplayedNumber(result);
 			display.display.setText(result);
